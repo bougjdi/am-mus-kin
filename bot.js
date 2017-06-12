@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
+var httpClient = require('node-rest-client-promise').Client()
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
@@ -12,11 +13,11 @@ client.on('message', msg => {
   if (msg.channel.type !== 'dm' && (config.channel !== msg.channel.id || msg.author.id === client.user.id)) return
 
   // If message is hello, post hello too
-  if (msg.content === 'hello') {
-    console.log(' hello man!')
-    msg.channel.send('hello papy')
+  if (msg.content === 'hi') {
+    console.log(' salam !')
+    msg.channel.send('salam')
   }
-    if (msg.content === 'Paris') {
+  if (msg.content === 'Paris') {
     httpClient.getPromise('http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=b05787eda8d8f7967925692ea52134d2')
     .then((res) => {
       var tempKal = res.data.main.temp
@@ -24,7 +25,6 @@ client.on('message', msg => {
       msg.channel.sendMessage('Il fait à PARIS: ' + tempCel.toFixed(2) + ' °C')
     })
   }
-
 })
 
 client.login(config.token)
