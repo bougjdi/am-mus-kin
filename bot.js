@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
+const Google_trad = require('./google_trans.js')
 var httpClient = require('node-rest-client-promise').Client()
 
 client.on('ready', () => {
@@ -24,6 +25,9 @@ client.on('message', msg => {
       var tempCel = tempKal - 273.15
       msg.channel.sendMessage('Il fait à PARIS: ' + tempCel.toFixed(2) + ' °C')
     })
+  }
+  if(Google_trad.match(msg)){
+     Google_trad.action(msg)
   }
 })
 

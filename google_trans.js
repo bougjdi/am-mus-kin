@@ -1,11 +1,10 @@
-  const Command = require('./command')
-  // czux permet d'obtenir la bibliotheque
+const Command = require('./command')
+// czux permet d'obtenir la bibliotheque
 
-  const Traducteur = require('@google-cloud/translate');
+const Traducteur = require('@google-cloud/translate');
+	key: 'AIzaSyD5KUAKvMH9TFh-YnFWJ8nVjgkR6yXmklM'
 
-		key: 'AIzaSyD5KUAKvMH9TFh-YnFWJ8nVjgkR6yXmklM'
-
- module.exports = class Google_Traducteur extends Command {
+module.exports = class Google_Traducteur extends Command {
 
 	static match (text) {
 
@@ -14,43 +13,40 @@
 	}
 
 	static action (text) {
+		var text_in = text.content.substring(11)
+		console.log('debug : '+text_in)
+		if (text_in.charAt(2) !== ' ' || text_in.charAt(1) === ' ') {
+			text.channel.send('Veuillez entrer une langue valide.')
 
-		
+		} else {
 
-    if (text.content.charAt(2) !== ' ' || text.content.charAt(1) === ' ') {
+			const translate = Traducteur
 
-      text.channel.send('Veuillez entrer une langue valide.')
+      			// traduction dans la langue choisie
+			var text_in = text.content.substring(11)
+      			var languedemandee = text_in.charAt(0) + text_in.charAt(1)
 
-    } else {
+      			var atraduire = text_in.substring(3)
+			//console.log('langue : '+languedemandee+'  -- atraduire : '+atraduire)
+      			translate.translate(atraduire, languedemandee).then((results) => {
 
-      const traduit = Traducteur
+        			let traduction = results[0]
 
-      // traduction dans la langue choisie
+        			traduction = Array.isArray(traduction) ? traduction : [traduction]
 
-      var languedemandee = text.content.charAt(0) + text.content.charAt(1)
+        			traduction.forEach((traduction) => {
 
-      var atraduire = text.content.substring(3)
+       					text.channel.send(traduction)
 
-      traduit.translate(atraduire, languedemandee).then((results) => {
+				})
 
-        let traduction = results[0]
+      			}).catch((err) => {
 
-        traduction = Array.isArray(traduction) ? traduction : [traduction]
+				text.channel.send('ERROR', err)
 
-        traduction.forEach((traduction) => {
+    			})
 
-          text.channel.send(traduction)
+    		}
 
-        })
-
-      })
-
-    .catch((err) => {
-
-     text.channel.send('ERROR', err)
-
-    })
-
-    }
-
+	}
 }
