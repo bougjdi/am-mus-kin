@@ -18,7 +18,7 @@ client.on('message', msg => {
     console.log(' salam !')
    msg.channel.send('salam')
   }
-  if (msg.content === 'Paris') {
+  if (msg.content !== '') {
   var b = msg.content
     httpClient.getPromise('http://api.openweathermap.org/data/2.5/weather?q='+ b +'&APPID=b05787eda8d8f7967925692ea52134d2')
     .then((res) => {
