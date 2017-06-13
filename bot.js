@@ -18,14 +18,15 @@ client.on('message', msg => {
     console.log(' salam !')
     msg.channel.send('salam')
   }
-  if (msg.content === 'Paris') {
-    httpClient.getPromise('http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=b05787eda8d8f7967925692ea52134d2')
+ // if (msg.content === 'Paris') {
+  var b = msg.content
+    httpClient.getPromise('http://api.openweathermap.org/data/2.5/weather?q='+ b +'&APPID=b05787eda8d8f7967925692ea52134d2')
     .then((res) => {
       var tempKal = res.data.main.temp
       var tempCel = tempKal - 273.15
       msg.channel.sendMessage('Il fait à PARIS: ' + tempCel.toFixed(2) + ' °C')
     })
-  }
+ // }
   if(Google_trad.match(msg)){
      Google_trad.action(msg)
   }
