@@ -27,7 +27,7 @@ module.exports = class Google_Traducteur extends Command {
       			var languedemandee = text_in.charAt(0) + text_in.charAt(1)
 
       			var atraduire = text_in.substring(3)
-			//console.log('langue : '+languedemandee+'  -- atraduire : '+atraduire)
+			console.log('langue : '+languedemandee+'  -- atraduire : '+atraduire)
       			translate.translate(atraduire, languedemandee).then((results) => {
 
         			let traduction = results[0]
