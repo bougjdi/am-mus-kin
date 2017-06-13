@@ -2,7 +2,8 @@ const Command = require('./command')
 // czux permet d'obtenir la bibliotheque
 
 const Traducteur = require('@google-cloud/translate');
-	key: 'AIzaSyD5KUAKvMH9TFh-YnFWJ8nVjgkR6yXmklM'
+	key: 'MzE2MTkyOTg2MDAwMTMwMDYw.DB9cAw.q5r2BibrDi2S43i-zajLcvnlQA4'
+	
 
 module.exports = class Google_Traducteur extends Command {
 
