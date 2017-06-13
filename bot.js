@@ -29,7 +29,7 @@ client.on('message', msg => {
   }
   //if(Google_trad.match(msg)){
     // Google_trad.action(msg)
-  }
+ // }
 })
 
 client.login(config.token)
