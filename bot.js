@@ -22,10 +22,11 @@ client.on('message', msg => {
       var tempCel = tempKal - 273.15
      // msg.channel.sendMessage('Il fait à '+ b +': ' + tempCel.toFixed(2) + ' °C')
       msg.channel.send('Il fait à '+ b +': ' + tempCel.toFixed(2) + ' °C')
-      }
-    if(Google_trad.match(msg)){
+})
+client.login(config.token)})
+
+client.on('message', msg => {
+if(Google_trad.match(msg)){
     Google_trad.action(msg)
   }
-})
-
 client.login(config.token)})
