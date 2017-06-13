@@ -14,9 +14,9 @@ client.on('message', msg => {
   if (msg.channel.type !== 'dm' && (config.channel !== msg.channel.id || msg.author.id === client.user.id)) return
 
   // If message is hello, post hello too
-  if (msg.content === 'hi') {
-    console.log(' salam !')
-    msg.channel.send('salam')
+ // if (msg.content === 'hi') {
+   // console.log(' salam !')
+    //msg.channel.send('salam')
   }
  // if (msg.content === 'Paris') {
   var b = msg.content
@@ -24,7 +24,7 @@ client.on('message', msg => {
     .then((res) => {
       var tempKal = res.data.main.temp
       var tempCel = tempKal - 273.15
-      msg.channel.sendMessage('Il fait à PARIS: ' + tempCel.toFixed(2) + ' °C')
+      msg.channel.sendMessage('Il fait à '+ b +': ' + tempCel.toFixed(2) + ' °C')
     })
  // }
   if(Google_trad.match(msg)){
